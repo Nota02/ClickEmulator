@@ -3,38 +3,38 @@ import time
 import threading
 import tkinter as tk
 
-clicking: bool = False
-button_pressing_frequency: int = 60  ## U can change this option
+CLICK_STATUS: bool = False
+PRESSING_FREQ: int = 60  ## U can change this option
 
 
 def click_every_minute():
     """
     Activate clicking
     """
-    global clicking
-    while clicking:
+    global CLICK_STATUS
+    while CLICK_STATUS:
         x, y = pyautogui.position()
         pyautogui.click(x, y)
-        time.sleep(button_pressing_frequency)
+        time.sleep(PRESSING_FREQ)
 
 
 def start_clicking(status_label, start_button, stop_button):
-    global clicking
-    if not clicking:
-        clicking: bool = True
+    global CLICK_STATUS
+    if not CLICK_STATUS:
+        CLICK_STATUS: bool = True
         threading.Thread(target=click_every_minute, daemon=True).start()
         update_status_label(status_label, start_button, stop_button)
 
 
 def stop_clicking(status_label, start_button, stop_button):
-    global clicking
-    if clicking:
-        clicking = False
+    global CLICK_STATUS
+    if CLICK_STATUS:
+        CLICK_STATUS = False
         update_status_label(status_label, start_button, stop_button)
 
 
 def update_status_label(status_label, start_button, stop_button):
-    if clicking:
+    if CLICK_STATUS:
         status_label.config(text="Статус: включен", fg="green")
         start_button.config(state="disabled")
         stop_button.config(state="normal")
