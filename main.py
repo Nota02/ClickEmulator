@@ -29,7 +29,7 @@ def start_clicking(status_label, start_button, stop_button):
 def stop_clicking(status_label, start_button, stop_button):
     global CLICK_STATUS
     if CLICK_STATUS:
-        CLICK_STATUS = False
+        CLICK_STATUS: bool = False
         update_status_label(status_label, start_button, stop_button)
 
 
