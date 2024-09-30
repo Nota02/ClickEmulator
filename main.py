@@ -3,7 +3,7 @@ import time
 import threading
 import tkinter as tk
 
-CLICK_STATUS: bool = False
+CLICK_STATUS = False
 PRESSING_FREQ: int = 60  ## U can change this option
 
 
@@ -21,7 +21,7 @@ def click_every_minute():
 def start_clicking(status_label, start_button, stop_button):
     global CLICK_STATUS
     if not CLICK_STATUS:
-        CLICK_STATUS: bool = True
+        CLICK_STATUS = True
         threading.Thread(target=click_every_minute, daemon=True).start()
         update_status_label(status_label, start_button, stop_button)
 
@@ -29,7 +29,7 @@ def start_clicking(status_label, start_button, stop_button):
 def stop_clicking(status_label, start_button, stop_button):
     global CLICK_STATUS
     if CLICK_STATUS:
-        CLICK_STATUS: bool = False
+        CLICK_STATUS = False
         update_status_label(status_label, start_button, stop_button)
 
 
